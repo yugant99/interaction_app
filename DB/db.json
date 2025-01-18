@@ -1,0 +1,12 @@
+{
+    "name" : "Database Image",
+    "data" : [
+        {
+            "id" : 1,
+            "name" : " set1 - green tree",
+            "target" : "./images/target.jpg",
+            "competitor" : "./images/top_centre.jpg",
+            "control" : "./images/top_right.jpg"
+        }
+    ]
+}
