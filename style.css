@@ -1,0 +1,94 @@
+/* General styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Style for each slide */
+.slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Container to hold the images */
+.image-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px; /* Space between images and the buttons */
+}
+
+/* Style for the images */
+.images {
+    width: 150px; /* Control size of images */
+    height: auto;
+    border-radius: 10px; /* Optional: add rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Optional: add shadow */
+}
+
+/* Style for buttons */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Style for move and next buttons */
+#move-button, #next-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 15px 30px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#next-button {
+    left: auto;
+    right: 20px;
+    background-color: #17a2b8;
+}
+
+/* Arrow for next slide */
+#arrow {
+    position: fixed;
+    bottom: 20px;
+    right: 100px;
+    font-size: 24px;
+    color: #ff5733;
+    cursor: pointer;
+}
+
+/* Centering and styling the text input */
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+}

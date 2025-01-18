@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grandma Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Name Entry Screen -->
+  <div id="name-entry-container">
+    <h2>Enter your name to start the game</h2>
+    <input type="text" id="name" placeholder="Enter your name" />
+    <button id="start-game">Start Game</button>
+  </div>
+
+  <!-- Game Screen -->
+  <div id="game-screen" style="display: none;">
+    <!-- Slide 1 -->
+    <div id="slide-1" class="slide" style="display: none;">
+      <div class="image-container">
+        <img id="top-left" class="images" src="images/target.jpg" alt="Top Left" />
+        <img id="top-right" class="images" src="images/top_right.jpg" alt="Top Right" />
+        <img id="center" class="images" src="images/top_centre.jpg" alt="Center" />
+      </div>
+      <div id="grandma" class="character" style="left: 50px; top: 400px;">👵</div>
+
+      <!-- Arrow pointing to target -->
+      <div id="arrow-next-slide" class="arrow">➡️</div>
+
+      <button id="move-grandma">Move Grandma</button>
+      <button id="next">Next</button>
+    </div>
+
+    <!-- Slide 2 -->
+    <div id="slide-2" class="slide" style="display: none;">
+      <div class="image-container">
+        <img id="top-left-2" class="image" src="top-left-image-2.png" alt="Top Left 2" />
+        <img id="top-right-2" class="image" src="top-right-image-2.png" alt="Top Right 2" />
+        <img id="center-2" class="image" src="center-image-2.png" alt="Center 2" />
+      </div>
+      <div id="grandma-2" class="character" style="left: 50px; top: 400px;">👵</div>
+
+      <!-- Arrow pointing to target -->
+      <div id="arrow-next-slide-2" class="arrow">➡️</div>
+
+      <button id="move-grandma-2">Move Grandma</button>
+      <button id="next-2">Next</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
