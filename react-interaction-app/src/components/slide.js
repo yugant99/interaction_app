@@ -71,6 +71,7 @@ const Slide = ({
             <img
                 src="/images/granny-trans.png"
                 alt="granny"
+                width="70px"
             />
       </div>
 

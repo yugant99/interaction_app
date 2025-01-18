@@ -12,7 +12,7 @@ const App = () => {
         { id: `competitor-${item.id}`, src: item.competitor, alt: `Competitor Image ${item.id}` },
         { id: `control-${item.id}`, src: item.control, alt: `Control Image ${item.id}` },
       ],
-      grandmaInitialPosition: { x: 50, y: 50 },
+      grandmaInitialPosition: { x: 50, y: 75 },
       targetPosition: { x: 20, y: 30 },
     }))
   );

@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-top: 10rem;
 }
 
 code {
@@ -34,7 +33,7 @@ code {
 
 .button-group {
   position: absolute;
-  top: calc(50% + 100px); /* Position below grandma */
+  top: calc(50% + 250px); /* Position below grandma */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
