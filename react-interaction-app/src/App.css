@@ -37,3 +37,22 @@
   }
 }
 
+/* Add these styles for slide transitions */
+.slide-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.slide-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 500ms, transform 500ms;
+}
+.slide-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+.slide-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 500ms, transform 500ms;
+}

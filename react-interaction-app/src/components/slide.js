@@ -4,26 +4,29 @@ const Slide = ({
   slideId,
   images,
   grandmaInitialPosition,
+  youngPersonInitialPosition,
   targetPosition,
   onMoveGrandma,
   onNext,
   showArrow,
+  isList2, // Added line
 }) => {
-  const [grandmaPosition, setGrandmaPosition] = useState(grandmaInitialPosition);
+  const initialPosition = isList2 ? youngPersonInitialPosition : grandmaInitialPosition; // Added line
+  const [characterPosition, setCharacterPosition] = useState(initialPosition);
 
-  const moveGrandma = () => {
-    setGrandmaPosition(targetPosition);
+  const moveCharacter = () => {
+    setCharacterPosition(targetPosition);
     if (onMoveGrandma) onMoveGrandma(slideId);
   };
 
   const handleNextFunc = () => {
     reset();
     onNext();
-  }
+  };
 
   const reset = () => {
-    setGrandmaPosition(grandmaInitialPosition);
-  }
+    setCharacterPosition(initialPosition);
+  };
 
   useEffect(() => {
     if (showArrow) {
@@ -38,53 +41,50 @@ const Slide = ({
     }
   }, [showArrow, images, slideId]);
 
+  useEffect(() => {
+    setCharacterPosition(initialPosition); // Added line
+  }, [isList2, initialPosition]); // Added line
+
   return (
     <div id={`slide-${slideId}`} className="slide" style={{ display: "block" }}>
       <div className="image-container">
         {images.map((img, i) => (
-            <div className="image-group">
-                {i==0 ?         
-                <div id={`arrow-next-slide-${slideId}`} className="arrow">
-                    ➡️
-                </div> : ""}
-                <img
-                    key={img.id}
-                    id={img.id}
-                    className="images"
-                    src={img.src}
-                    alt={img.alt}
-                />
-            </div>
+          <div className="image-group" key={img.id}>
+            {i === 0 && (
+              <div id={`arrow-next-slide-${slideId}`} className="arrow">
+                ➡️
+              </div>
+            )}
+            <img
+              id={img.id}
+              className="images"
+              src={img.src}
+              alt={img.alt}
+            />
+          </div>
         ))}
       </div>
       <div
-        id={`grandma-${slideId}`}
+        id={`character-${slideId}`}
         className="character"
         style={{
-          left: `${grandmaPosition.x}%`,
-          top: `${grandmaPosition.y}%`,
+          left: `${characterPosition.x}%`,
+          top: `${characterPosition.y}%`,
           position: "absolute",
           transition: "all 1s ease",
           transform: "translate(-50%,-50%)"
         }}
       >
-            <img
-                src="/images/granny-trans.png"
-                alt="granny"
-                width="70px"
-            />
+        <img
+          src={isList2 ? "/images/young-person.png" : "/images/granny-trans.png"} // Added line
+          alt={isList2 ? "young person" : "granny"} // Added line
+          width="70px"
+        />
       </div>
-
-      {/* {showArrow && (
-        <div id={`arrow-next-slide-${slideId}`} className="arrow">
-          ➡️
-        </div>
-      )} */}
-
-        <div className="button-group">
-            <button onClick={moveGrandma}>Move Grandma</button>
-            <button onClick={handleNextFunc}>Next</button>
-        </div>
+      <div className="button-group">
+        <button onClick={moveCharacter}>Move Character</button>
+        <button onClick={handleNextFunc}>Next</button>
+      </div>
     </div>
   );
 };

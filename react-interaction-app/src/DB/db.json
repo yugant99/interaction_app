@@ -6,19 +6,198 @@
             "name" : " set1 - green tree",
             "target" : "/images/target.jpg",
             "competitor" : "/images/top_centre.jpg",
-            "control" : "/images/top_right.jpg"
+            "control" : "/images/top_right.jpg",
+            "grandmaInitialPosition": { "x": 50, "y": 75 },
+            "youngPersonInitialPosition": { "x": 20, "y": 50 },
+            "targetPosition": { "x": 20, "y": 30 }
         },        {
-            "id" : 1,
-            "name" : " set1 - green tree",
-            "target" : "/images/top_centre.jpg",
-            "competitor" : "/images/target.jpg",
-            "control" : "/images/top_right.jpg"
-        },        {
-            "id" : 1,
-            "name" : " set1 - green tree",
-            "target" : "/images/top_right.jpg",
-            "competitor" : "/images/top_centre.jpg",
-            "control" : "/images/target.jpg"
+            "id" : 2,
+            "name" : " set1 - Shirts",
+            "target" : "/images/Shirt Green.jpg",
+            "competitor" : "/images/Shirt Yellow.jpg",
+            "control" : "/images/Shirt Control Cloud.jpg"
+        }, {
+            "id" : 3,
+            "name" : " set1 - Shoes",
+            "target" : "/images/Shoe Black.jpg",
+            "competitor" : "/images/Shoe Orange.jpg",
+            "control" : "/images/Shoe Control Banana.jpg"
+        }, { 
+            "id" : 4,
+            "name" : " set1 - Flower",
+            "target" : "/images/Flower Pink.jpg",
+            "competitor" : "/images/Flower Yellow.jpg",
+            "control" : "/images/Flower Control Pants.jpg"
+
+        },  { 
+            "id" : 5,
+            "name" : " set1 - Mug",
+            "target" : "/images/Mug Black.jpg",
+            "competitor" : "/images/Mug Green.jpg",
+            "control" : "/images/Mug Control Scissors.jpg"
+
+        },{ 
+            "id" : 6,
+            "name" : " set1 - Door",
+            "target" : "/images/Door Green.jpg",
+            "competitor" : "/images/Door Red.jpg",
+            "control" : "/images/Door Control Bread.jpg"
+
+        },{ 
+            "id" : 7,
+            "name" : " set1 - Apple",
+            "target" : "/images/Apple Red.jpg",
+            "competitor" : "/images/Apple Green.jpg",
+            "control" : "/images/Apple Control Socks.jpg"
+
+        },{ 
+            "id" : 8,
+            "name" : " set1 - Duck",
+            "target" : "/images/Duck Green.jpg",
+            "competitor" : "/images/Duck Pink.jpg",
+            "control" : "/images/Duck Control Spoon.jpg"
+
+        },{ 
+            "id" : 9,
+            "name" : " set1 - Umbrella",
+            "target" : "/images/Umbrella Yellow.png",
+            "competitor" : "/images/Umbrella Black.png",
+            "control" : "/images/Umbrella Control Couch.jpg"
+
+        },{ 
+            "id" : 10,
+            "name" : " set1 - Cake",
+            "target" : "/images/Cake Pink.jpg",
+            "competitor" : "/images/Cake Blue.jpg",
+            "control" : "/images/Cake Control Boot.jpg"
+
+        },{ 
+            "id" : 11,
+            "name" : " set1 - Present ",
+            "target" : "/images/Present Red.jpg",
+            "competitor" : "/images/Present Blue.jpg",
+            "control" : "/images/Present Control Bowl.jpg"
+
+        },{ 
+            "id" : 12,
+            "name" : " set1 - Crayon",
+            "target" : "/images/Crayon Yellow.jpg",
+            "competitor" : "/images/Crayon Red.jpg",
+            "control" : "/images/Crayon Control Television.jpg"
+
+        },{ 
+            "id" : 13,
+            "name" : " set1 - Balloon",
+            "target" : "/images/Balloon Green.jpg",
+            "competitor" : "/images/balloon Yellow.jpg",
+            "control" : "/images/Balloon Control Towel.jpg"
+
+        },{ 
+            "id" : 14,
+            "name" : " set1 - Shorts",
+            "target" : "/images/Shorts Black.jpg",
+            "competitor" : "/images/Shorts Orange.jpg",
+            "control" : "/images/Shorts Control Lollipop.jpg"
+
+        },{ 
+            "id" : 15,
+            "name" : " set1 - Car",
+            "target" : "/images/Car Yellow.jpg",
+            "competitor" : "/images/Car Black.jpg",
+            "control" : "/images/car Control Bed.jpg"
+
+        },{ 
+            "id" : 16,
+            "name" : " set1 - House",
+            "target" : "/images/House Blue.jpg",
+            "competitor" : "/images/House Orange.jpg",
+            "control" : "/images/House Control Ring.jpg"
+
+        },{ 
+            "id" : 17,
+            "name" : " set1 - Hat",
+            "target" : "/images/Hat Pink.jpg",
+            "competitor" : "/images/Hat Blue.jpg",
+            "control" : "/images/Hat Control Cookie.jpg"
+
+        },{ 
+            "id" : 18,
+            "name" : " set1 - Book",
+            "target" : "/images/Book Orange.jpg",
+            "competitor" : "/images/Book Black.jpg",
+            "control" : "/images/Book Control Snowman.jpg"
+
+        },{ 
+            "id" : 19,
+            "name" : " set1 - Chair",
+            "target" : "/images/Chair Red.jpg",
+            "competitor" : "/images/Chair Blue.jpg",
+            "control" : "/images/Chair Control Bell.jpg"
+
+        },{ 
+            "id" : 20,
+            "name" : " set1 - Ice Cream",
+            "target" : "/images/Ice Cream Bowl.jpg",
+            "competitor" : "/images/Ice Cream Cone.jpg",
+            "control" : "/images/Ice Cream Control Pyjamas.jpg"
+
+        },{ 
+            "id" : 21,
+            "name" : " set1 - Plate",
+            "target" : "/images/Plate Green.jpg",
+            "competitor" : "/images/Plate Blue.jpg",
+            "control" : "/images/Plate Control Necklace.jpg"
+
+        },{ 
+            "id" : 22,
+            "name" : " set1 - Bottle",
+            "target" : "/images/Bottle Blue.jpg",
+            "competitor" : "/images/Bottle Pink.jpg",
+            "control" : "/images/Bottle Control Sun.jpg"
+
+        },{ 
+            "id" : 23,
+            "name" : " set1 - Bear",
+            "target" : "/images/Bear Orange.jpg",
+            "competitor" : "/images/Bear Red.jpg",
+            "control" : "/images/Bear Control Fork.jpg"
+
+        },{ 
+            "id" : 24,
+            "name" : " set1 - Jacket",
+            "target" : "/images/Jacket Orange.jpg",
+            "competitor" : "/images/Jacket Pink.jpg",
+            "control" : "/images/Jacket Control Bath.jpg"
+
+        },{ 
+            "id" : 25,
+            "name" : " set1 - Table",
+            "target" : "/images/Table Black.jpg",
+            "competitor" : "/images/Table Red.jpg",
+            "control" : "/images/Table Control Key.jpg"
+
+        },{ 
+            "id" : 26,
+            "name" : " set1 - Books",
+            "target" : "/images/Book Orange.jpg",
+            "competitor" : "/images/Book Black.jpg",
+            "control" : "/images/Book Control Snowman.jpg"
+
+        },{ 
+            "id" : 27,
+            "name" : " set1 - Chocolates",
+            "target" : "/images/Chocolate Orange.jpg",
+            "competitor" : "/images/Chocolate Pink.jpg",
+            "control" : "/images/Chocolate Control Bag.jpg"
+
+        },{ 
+            "id" : 28,
+            "name" : " set1 - Balls",
+            "target" : "/images/Ball Red.jpg",
+            "competitor" : "/images/Ball Yellow.jpg",
+            "control" : "/images/Ball Control Truck.jpg"
+
         }
+        
     ]
 }
