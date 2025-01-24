@@ -9,9 +9,9 @@ const Slide = ({
   onMoveGrandma,
   onNext,
   showArrow,
-  isList2, // Added line
+  isYoungPerson,
 }) => {
-  const initialPosition = isList2 ? youngPersonInitialPosition : grandmaInitialPosition; // Added line
+  const initialPosition = isYoungPerson ? youngPersonInitialPosition : grandmaInitialPosition;
   const [characterPosition, setCharacterPosition] = useState(initialPosition);
 
   const moveCharacter = () => {
@@ -42,25 +42,18 @@ const Slide = ({
   }, [showArrow, images, slideId]);
 
   useEffect(() => {
-    setCharacterPosition(initialPosition); // Added line
-  }, [isList2, initialPosition]); // Added line
+    setCharacterPosition(initialPosition);
+  }, [isYoungPerson, initialPosition]);
 
   return (
     <div id={`slide-${slideId}`} className="slide" style={{ display: "block" }}>
       <div className="image-container">
         {images.map((img, i) => (
           <div className="image-group" key={img.id}>
-            {i === 0 && (
-              <div id={`arrow-next-slide-${slideId}`} className="arrow">
-                ➡️
-              </div>
+            {i === 0 && showArrow && (
+              <div id={`arrow-next-slide-${slideId}`} className="arrow">➡️</div>
             )}
-            <img
-              id={img.id}
-              className="images"
-              src={img.src}
-              alt={img.alt}
-            />
+            <img id={img.id} className="images" src={img.src} alt={img.alt} />
           </div>
         ))}
       </div>
@@ -76,8 +69,8 @@ const Slide = ({
         }}
       >
         <img
-          src={isList2 ? "/images/young-person.png" : "/images/granny-trans.png"} // Added line
-          alt={isList2 ? "young person" : "granny"} // Added line
+          src={isYoungPerson ? "/images/young-person.png" : "/images/granny-trans.png"}
+          alt={isYoungPerson ? "young person" : "granny"}
           width="70px"
         />
       </div>
