@@ -1,30 +1,32 @@
 import React, { useState } from "react";
 
-const Home = ({ setContestant }) => {
+const Home = ({ setContestant, setActiveList }) => {
   const [name, setName] = useState("");
-  const [isNameSubmitted, setIsNameSubmitted] = useState(false); // Track if name is submitted
-  const [isList2, setIsList2] = useState(false); // New state to track if we are on List 2
+  const [isNameSubmitted, setIsNameSubmitted] = useState(false);
 
   const handleNameSubmit = (e) => {
     e.preventDefault();
     if (name.trim() !== "") {
-      setIsNameSubmitted(true); // Set name submitted flag
-      setContestant(name); // Set the contestant's name
+      setIsNameSubmitted(true);
+      setContestant(name);
     } else {
       alert("Please enter your name.");
     }
   };
 
-  const handleGoToList2 = () => {
-    setIsList2(true); // Change state to indicate we are now on List 2
-    setContestant("Young Person"); // Set the contestant to "young person"
+  const handleListSelection = (listName) => {
+    setActiveList(listName); // Set the active list
+    if (listName === 'List1') {
+      setContestant("Grandma");
+  } else if (listName === 'List2') {
+    setContestant("Young Person");
+  }
   };
 
   return (
     <div id="home-screen">
       <h1>Welcome to the Game!</h1>
       {!isNameSubmitted ? (
-        // If name isn't submitted, show the name input form
         <form onSubmit={handleNameSubmit}>
           <input
             type="text"
@@ -35,10 +37,16 @@ const Home = ({ setContestant }) => {
           <button type="submit">Submit</button>
         </form>
       ) : (
-        // After name is submitted, show List 1 (with Grandma) and a button to go to List 2
         <div>
-          <h2>Hi, {name}! You are starting with List 1 (Grandma):</h2>
-          <button onClick={handleGoToList2}>Go to List 2 (Young Person)</button>
+          <h2>Hi, {name}! Choose a list to start:</h2>
+          <button onClick={() => handleListSelection('List1')}>List 1 (Grandma)</button>
+          <button onClick={() => handleListSelection('List2')}>List 2 (Young Person)</button>
+          <button onClick={() => handleListSelection('List3')}>List 3 (Grandma)</button>
+          <button onClick={() => handleListSelection('List4')}>List 4 (Young Person)</button>
+          <button onClick={() => handleListSelection('List5')}>List 5 (Grandma)</button>
+          <button onClick={() => handleListSelection('List6')}>List 6 (Young Person)</button>
+          <button onClick={() => handleListSelection('List7')}>List 7 (Grandma)</button>
+          <button onClick={() => handleListSelection('List8')}>List 8 (Young Person)</button>
         </div>
       )}
     </div>

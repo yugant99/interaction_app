@@ -8,19 +8,19 @@ import "./App.css";
 const App = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [contestant, setContestant] = useState('');
-  const [isList2, setIsList2] = useState(false);
+  const [activeList, setActiveList] = useState('List1'); // Track active list
   const [slidesData, setSlidesData] = useState([]);
 
   useEffect(() => {
-    const initializeSlidesData = (startWithYoung = false) => {
-      const listData = startWithYoung ? db["List2"] : db.List1;
-      
+    const initializeSlidesData = () => {
+      const listData = db[activeList]; // Use the active list
+
       // Filter and randomize slides
       const youngSlides = listData.filter(item => item.isYoung).sort(() => 0.5 - Math.random());
       const oldSlides = listData.filter(item => !item.isYoung).sort(() => 0.5 - Math.random());
-      
+
       // Combine based on start character
-      const combinedSlides = startWithYoung ? [...youngSlides, ...oldSlides] : [...oldSlides, ...youngSlides];
+      const combinedSlides = [...youngSlides, ...oldSlides];
 
       return combinedSlides.map((item) => ({
         slideId: item.id,
@@ -35,8 +35,8 @@ const App = () => {
       }));
     };
 
-    setSlidesData(initializeSlidesData(isList2));
-  }, [isList2]);
+    setSlidesData(initializeSlidesData());
+  }, [activeList]);
 
   const handleNext = () => {
     if (currentIndex < slidesData.length - 1) {
@@ -46,9 +46,17 @@ const App = () => {
     }
   };
 
-  const handleSwitchList = () => {
-    setIsList2(!isList2);
-    setCurrentIndex(0);
+  const handleSwitchList = (listName) => {
+    setActiveList(listName); // Switch to the selected list
+    setCurrentIndex(0); // Reset slide index
+    setContestant(
+      listName === 'List2' || 
+      listName === 'List4' || 
+      listName === 'List6' || 
+      listName === 'List8' 
+      ? "Young Person" 
+      : "Grandma"
+    );
   };
 
   return (
@@ -57,7 +65,7 @@ const App = () => {
         <h4>Welcome {contestant}!</h4>
       </div>
       {contestant === '' ? (
-        <Home setContestant={setContestant} />
+        <Home setContestant={setContestant} setActiveList={setActiveList} />
       ) : (
         <>
           {slidesData.length > 0 && currentIndex < slidesData.length && (
@@ -80,9 +88,16 @@ const App = () => {
               </CSSTransition>
             </TransitionGroup>
           )}
-          <button onClick={handleSwitchList}>
-            Switch to List {isList2 ? '1' : '2'}
-          </button>
+          <div>
+            <button onClick={() => handleSwitchList('List1')}>Switch to List 1</button>
+            <button onClick={() => handleSwitchList('List2')}>Switch to List 2</button>
+            <button onClick={() => handleSwitchList('List3')}>Switch to List 3</button>
+            <button onClick={() => handleSwitchList('List4')}>Switch to List 4</button>
+            <button onClick={() => handleSwitchList('List5')}>Switch to List 5</button>
+            <button onClick={() => handleSwitchList('List6')}>Switch to List 6</button>
+            <button onClick={() => handleSwitchList('List7')}>Switch to List 7</button>
+            <button onClick={() => handleSwitchList('List8')}>Switch to List 8</button>
+          </div>
         </>
       )}
     </div>
