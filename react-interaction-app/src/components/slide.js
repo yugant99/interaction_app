@@ -17,8 +17,8 @@ const Slide = ({
 
   // Get target position based on whether target is on right or left
   const getTargetPosition = () => ({
-    x: isTargetRight ? 53.5: 30,
-    y: 25
+    x: isTargetRight ? 53.5: 28,
+    y: 23.5
   });
 
   const moveCharacter = () => {

@@ -104,8 +104,9 @@
   position: relative;
   display: flex;
   gap: 10px;
-  margin: 20px 0;
   justify-content: center;
+  margin-top: 100px;  /* Increase this value to move buttons lower */
+  margin-bottom: 50px;
 }
 
 .slide {

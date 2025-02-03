@@ -8,17 +8,24 @@ import "./App.css";
 const App = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [contestant, setContestant] = useState('');
-  const [activeList, setActiveList] = useState('List1'); // Track active list
+  const [activeList, setActiveList] = useState('List1');
   const [slidesData, setSlidesData] = useState([]);
 
   useEffect(() => {
     const initializeSlidesData = () => {
       const listData = db[activeList];
-  
+      const listNumber = parseInt(activeList.replace('List', ''));
+
+      // Filter young and old slides
       const youngSlides = listData.filter(item => item.isYoung).sort(() => 0.5 - Math.random());
       const oldSlides = listData.filter(item => !item.isYoung).sort(() => 0.5 - Math.random());
-      const combinedSlides = [...youngSlides, ...oldSlides];
-  
+
+      // For even-numbered lists (2,4,6,8), show old first
+      // For odd-numbered lists (1,3,5,7), show young first
+      const combinedSlides = listNumber % 2 === 0 
+        ? [...oldSlides, ...youngSlides]  // Even lists: old first
+        : [...youngSlides, ...oldSlides]; // Odd lists: young first
+
       return combinedSlides.map((item) => ({
         slideId: item.id,
         images: [
@@ -29,7 +36,6 @@ const App = () => {
         youngPersonInitialPosition: { x: 50, y: 75 },
         targetPosition: { x: 10, y: 20 },
         isYoungPerson: item.isYoung,
-        // Add random target position (left or right)
         isTargetRight: Math.random() < 0.5
       }));
     };
@@ -46,20 +52,15 @@ const App = () => {
   };
 
   const handleSwitchList = (listName) => {
-    setActiveList(listName); // Switch to the selected list
-    setCurrentIndex(0); // Reset slide index
-    setContestant(
-      listName === 'List2' || 
-      listName === 'List4' || 
-      listName === 'List6' || 
-      listName === 'List8' 
-      ? "Young Person" 
-      : "Grandma"
-    );
+    setActiveList(listName);
+    setCurrentIndex(0);
+    // Update contestant based on list number
+    const listNumber = parseInt(listName.replace('List', ''));
+    setContestant(listNumber % 2 === 0 ? "Grandma" : "Young Person");
   };
 
   return (
-    <div className="game-container">
+    <div id="game-screen">
       <div className="welcome-header">
         <h4>Welcome {contestant}!</h4>
       </div>
@@ -67,29 +68,27 @@ const App = () => {
         <Home setContestant={setContestant} setActiveList={setActiveList} />
       ) : (
         <>
-          <div className="game-content">
-            {slidesData.length > 0 && currentIndex < slidesData.length && (
-              <TransitionGroup>
-                <CSSTransition
-                  key={slidesData[currentIndex].slideId}
-                  timeout={500}
-                  classNames="slide"
-                >
-                  <Slide
-                    slideId={slidesData[currentIndex].slideId}
-                    images={slidesData[currentIndex].images}
-                    grandmaInitialPosition={slidesData[currentIndex].grandmaInitialPosition}
-                    youngPersonInitialPosition={slidesData[currentIndex].youngPersonInitialPosition}
-                    targetPosition={slidesData[currentIndex].targetPosition}
-                    onNext={handleNext}
-                    showArrow={true}
-                    isYoungPerson={slidesData[currentIndex].isYoungPerson}
-                    isTargetRight={slidesData[currentIndex].isTargetRight}
-                  />
-                </CSSTransition>
-              </TransitionGroup>
-            )}
-          </div>
+          {slidesData.length > 0 && currentIndex < slidesData.length && (
+            <TransitionGroup>
+              <CSSTransition
+                key={slidesData[currentIndex].slideId}
+                timeout={500}
+                classNames="slide"
+              >
+                <Slide
+                  slideId={slidesData[currentIndex].slideId}
+                  images={slidesData[currentIndex].images}
+                  grandmaInitialPosition={slidesData[currentIndex].grandmaInitialPosition}
+                  youngPersonInitialPosition={slidesData[currentIndex].youngPersonInitialPosition}
+                  targetPosition={slidesData[currentIndex].targetPosition}
+                  onNext={handleNext}
+                  showArrow={true}
+                  isYoungPerson={slidesData[currentIndex].isYoungPerson}
+                  isTargetRight={slidesData[currentIndex].isTargetRight}
+                />
+              </CSSTransition>
+            </TransitionGroup>
+          )}
           <div className="list-buttons">
             <button onClick={() => handleSwitchList('List1')}>Switch to List 1</button>
             <button onClick={() => handleSwitchList('List2')}>Switch to List 2</button>
