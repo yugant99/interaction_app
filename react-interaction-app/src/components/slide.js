@@ -10,12 +10,19 @@ const Slide = ({
   onNext,
   showArrow,
   isYoungPerson,
+  isTargetRight
 }) => {
   const initialPosition = isYoungPerson ? youngPersonInitialPosition : grandmaInitialPosition;
   const [characterPosition, setCharacterPosition] = useState(initialPosition);
 
+  // Get target position based on whether target is on right or left
+  const getTargetPosition = () => ({
+    x: isTargetRight ? 53.5: 30,
+    y: 25
+  });
+
   const moveCharacter = () => {
-    setCharacterPosition(targetPosition);
+    setCharacterPosition(getTargetPosition());
     if (onMoveGrandma) onMoveGrandma(slideId);
   };
 
@@ -31,7 +38,9 @@ const Slide = ({
   useEffect(() => {
     if (showArrow) {
       const arrowElement = document.getElementById(`arrow-next-slide-${slideId}`);
-      const targetImageElement = document.getElementById(images[0].id);
+      const targetImageElement = document.getElementById(
+        isTargetRight ? images[1].id : images[0].id
+      );
 
       if (arrowElement && targetImageElement) {
         const rect = targetImageElement.getBoundingClientRect();
@@ -39,21 +48,29 @@ const Slide = ({
         arrowElement.style.top = `${rect.top + window.scrollY}px`;
       }
     }
-  }, [showArrow, images, slideId]);
+  }, [showArrow, images, slideId, isTargetRight]);
 
   useEffect(() => {
     setCharacterPosition(initialPosition);
   }, [isYoungPerson, initialPosition]);
 
+  // Reorder images if target should be on the right
+  const orderedImages = isTargetRight ? [...images].reverse() : images;
+
   return (
     <div id={`slide-${slideId}`} className="slide" style={{ display: "block" }}>
       <div className="image-container">
-        {images.map((img, i) => (
+        {orderedImages.map((img, i) => (
           <div className="image-group" key={img.id}>
-            {i === 0 && showArrow && (
+            {((isTargetRight && i === 1) || (!isTargetRight && i === 0)) && showArrow && (
               <div id={`arrow-next-slide-${slideId}`} className="arrow">➡️</div>
             )}
-            <img id={img.id} className="images" src={img.src} alt={img.alt} />
+            <img 
+              id={img.id} 
+              className="images" 
+              src={img.src} 
+              alt={img.alt} 
+            />
           </div>
         ))}
       </div>

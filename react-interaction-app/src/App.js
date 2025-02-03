@@ -13,15 +13,12 @@ const App = () => {
 
   useEffect(() => {
     const initializeSlidesData = () => {
-      const listData = db[activeList]; // Use the active list
-
-      // Filter and randomize slides
+      const listData = db[activeList];
+  
       const youngSlides = listData.filter(item => item.isYoung).sort(() => 0.5 - Math.random());
       const oldSlides = listData.filter(item => !item.isYoung).sort(() => 0.5 - Math.random());
-
-      // Combine based on start character
       const combinedSlides = [...youngSlides, ...oldSlides];
-
+  
       return combinedSlides.map((item) => ({
         slideId: item.id,
         images: [
@@ -30,8 +27,10 @@ const App = () => {
         ],
         grandmaInitialPosition: { x: 50, y: 75 },
         youngPersonInitialPosition: { x: 50, y: 75 },
-        targetPosition: { x: 35, y: 20 },
-        isYoungPerson: item.isYoung
+        targetPosition: { x: 10, y: 20 },
+        isYoungPerson: item.isYoung,
+        // Add random target position (left or right)
+        isTargetRight: Math.random() < 0.5
       }));
     };
 
@@ -85,6 +84,7 @@ const App = () => {
                     onNext={handleNext}
                     showArrow={true}
                     isYoungPerson={slidesData[currentIndex].isYoungPerson}
+                    isTargetRight={slidesData[currentIndex].isTargetRight}
                   />
                 </CSSTransition>
               </TransitionGroup>

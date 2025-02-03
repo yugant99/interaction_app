@@ -94,6 +94,7 @@
 
 /* Game specific styles */
 .image-group {
+  flex: 0 0 auto; /* Prevent image groups from growing/shrinking */
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -135,9 +136,12 @@
 
 .image-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
-  margin-bottom: 20px;
+  max-width: 800px; /* Control maximum width */
+  margin: 0 auto;
+  padding: 20px 100px; /* Add padding on sides */
+  box-sizing: border-box;
 }
 
 .images {
@@ -145,6 +149,11 @@
   height: auto;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Add a minimum gap between images */
+.image-group + .image-group {
+  margin-left: 200px; /* Adjust this value to increase/decrease space between images */
 }
 
 button {
