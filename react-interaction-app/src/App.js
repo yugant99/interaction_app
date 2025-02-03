@@ -30,7 +30,7 @@ const App = () => {
         ],
         grandmaInitialPosition: { x: 50, y: 75 },
         youngPersonInitialPosition: { x: 50, y: 75 },
-        targetPosition: { x: 10, y: 20 },
+        targetPosition: { x: 35, y: 20 },
         isYoungPerson: item.isYoung
       }));
     };
@@ -60,7 +60,7 @@ const App = () => {
   };
 
   return (
-    <div id="game-screen">
+    <div className="game-container">
       <div className="welcome-header">
         <h4>Welcome {contestant}!</h4>
       </div>
@@ -68,27 +68,29 @@ const App = () => {
         <Home setContestant={setContestant} setActiveList={setActiveList} />
       ) : (
         <>
-          {slidesData.length > 0 && currentIndex < slidesData.length && (
-            <TransitionGroup>
-              <CSSTransition
-                key={slidesData[currentIndex].slideId}
-                timeout={500}
-                classNames="slide"
-              >
-                <Slide
-                  slideId={slidesData[currentIndex].slideId}
-                  images={slidesData[currentIndex].images}
-                  grandmaInitialPosition={slidesData[currentIndex].grandmaInitialPosition}
-                  youngPersonInitialPosition={slidesData[currentIndex].youngPersonInitialPosition}
-                  targetPosition={slidesData[currentIndex].targetPosition}
-                  onNext={handleNext}
-                  showArrow={true}
-                  isYoungPerson={slidesData[currentIndex].isYoungPerson}
-                />
-              </CSSTransition>
-            </TransitionGroup>
-          )}
-          <div>
+          <div className="game-content">
+            {slidesData.length > 0 && currentIndex < slidesData.length && (
+              <TransitionGroup>
+                <CSSTransition
+                  key={slidesData[currentIndex].slideId}
+                  timeout={500}
+                  classNames="slide"
+                >
+                  <Slide
+                    slideId={slidesData[currentIndex].slideId}
+                    images={slidesData[currentIndex].images}
+                    grandmaInitialPosition={slidesData[currentIndex].grandmaInitialPosition}
+                    youngPersonInitialPosition={slidesData[currentIndex].youngPersonInitialPosition}
+                    targetPosition={slidesData[currentIndex].targetPosition}
+                    onNext={handleNext}
+                    showArrow={true}
+                    isYoungPerson={slidesData[currentIndex].isYoungPerson}
+                  />
+                </CSSTransition>
+              </TransitionGroup>
+            )}
+          </div>
+          <div className="list-buttons">
             <button onClick={() => handleSwitchList('List1')}>Switch to List 1</button>
             <button onClick={() => handleSwitchList('List2')}>Switch to List 2</button>
             <button onClick={() => handleSwitchList('List3')}>Switch to List 3</button>

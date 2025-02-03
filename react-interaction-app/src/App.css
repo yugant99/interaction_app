@@ -2,6 +2,41 @@
   text-align: center;
 }
 
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  padding-bottom: 150px;
+}
+
+.game-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.list-buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -37,7 +72,7 @@
   }
 }
 
-/* Add these styles for slide transitions */
+/* Slide transitions */
 .slide-enter {
   opacity: 0;
   transform: scale(0.9);
@@ -55,4 +90,103 @@
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 500ms, transform 500ms;
+}
+
+/* Game specific styles */
+.image-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.button-group {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.welcome-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#home-screen {
+  margin: auto;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 30px 40px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  max-width: 400px;
+  width: 90%;
+}
+
+.image-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.images {
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#move-button, #next-button {
+  background-color: #28a745;
+}
+
+#next-button {
+  background-color: #17a2b8;
+}
+
+.arrow {
+  font-size: 24px;
+  color: #ff5733;
+  cursor: pointer;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.character {
+  margin: 20px 0;
 }
