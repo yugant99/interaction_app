@@ -2,53 +2,54 @@ import React, { useState } from "react";
 
 const Home = ({ setContestant, setActiveList }) => {
   const [name, setName] = useState("");
+  const [selectedList, setSelectedList] = useState("");
   const [isNameSubmitted, setIsNameSubmitted] = useState(false);
 
-  const handleNameSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (name.trim() !== "") {
+    if (name.trim() !== "" && selectedList) {
       setIsNameSubmitted(true);
-      setContestant(name);
+      setContestant(selectedList.includes('2') || selectedList.includes('4') || 
+                   selectedList.includes('6') || selectedList.includes('8') ? 
+                   "Grandma" : "Young Person");
+      setActiveList(selectedList);
     } else {
-      alert("Please enter your name.");
+      alert("Please enter your name and select a list.");
     }
-  };
-
-  const handleListSelection = (listName) => {
-    setActiveList(listName); // Set the active list
-    if (listName === 'List1') {
-      setContestant("Grandma");
-  } else if (listName === 'List2') {
-    setContestant("Young Person");
-  }
   };
 
   return (
     <div id="home-screen">
       <h1>Welcome to the Game!</h1>
-      {!isNameSubmitted ? (
-        <form onSubmit={handleNameSubmit}>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <select 
+            value={selectedList} 
+            onChange={(e) => setSelectedList(e.target.value)}
+            required
+          >
+            <option value="">Select a List</option>
+            <option value="List1">List 1</option>
+            <option value="List2">List 2</option>
+            <option value="List3">List 3</option>
+            <option value="List4">List 4</option>
+            <option value="List5">List 5</option>
+            <option value="List6">List 6</option>
+            <option value="List7">List 7</option>
+            <option value="List8">List 8</option>
+          </select>
+        </div>
+        <div className="form-group">
           <input
             type="text"
             placeholder="Enter your name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
-          <button type="submit">Submit</button>
-        </form>
-      ) : (
-        <div>
-          <h2>Hi, {name}! Choose a list to start:</h2>
-          <button onClick={() => handleListSelection('List1')}>List 1 (Grandma)</button>
-          <button onClick={() => handleListSelection('List2')}>List 2 (Young Person)</button>
-          <button onClick={() => handleListSelection('List3')}>List 3 (Grandma)</button>
-          <button onClick={() => handleListSelection('List4')}>List 4 (Young Person)</button>
-          <button onClick={() => handleListSelection('List5')}>List 5 (Grandma)</button>
-          <button onClick={() => handleListSelection('List6')}>List 6 (Young Person)</button>
-          <button onClick={() => handleListSelection('List7')}>List 7 (Grandma)</button>
-          <button onClick={() => handleListSelection('List8')}>List 8 (Young Person)</button>
         </div>
-      )}
+        <button type="submit">Start Game</button>
+      </form>
     </div>
   );
 };
