@@ -34,6 +34,20 @@ const Slide = ({
   const reset = () => {
     setCharacterPosition(initialPosition);
   };
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.code === 'Space') {
+        event.preventDefault();
+        moveCharacter();
+      } else if (event.code === 'Enter') {
+        event.preventDefault();
+        handleNextFunc();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
 
   useEffect(() => {
     if (showArrow) {
