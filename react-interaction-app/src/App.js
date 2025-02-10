@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Slide from "./components/slide";
 import db from "./DB/db.json";
 import Home from "./components/Home";
+import Modal from "./components/Modal";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./App.css";
 
@@ -10,6 +11,7 @@ const App = () => {
   const [contestant, setContestant] = useState('');
   const [activeList, setActiveList] = useState('');
   const [slidesData, setSlidesData] = useState([]);
+  const [showInstructions, setShowInstructions] = useState(true);
 
   useEffect(() => {
     const initializeSlidesData = () => {
@@ -47,6 +49,7 @@ const App = () => {
       setCurrentIndex(currentIndex + 1);
     } else {
       alert("Game Over!");
+      setShowInstructions(true);
     }
   };
 
@@ -59,6 +62,19 @@ const App = () => {
         <Home setContestant={setContestant} setActiveList={setActiveList} />
       ) : (
         <>
+          <Modal isOpen={showInstructions} onClose={() => setShowInstructions(false)}>
+            <div className="modal-content">
+              <img 
+                src={parseInt(activeList.replace('List', '')) % 2 === 0 ? 
+                  "/images/granny-trans.png" : "/images/young-person.png"} 
+                alt="Character" 
+                width="150px" 
+              />
+              <h2>Welcome to {activeList}!</h2>
+              <p>Press SPACEBAR to move the character</p>
+              <p>Press ENTER for next image</p>
+            </div>
+          </Modal>
           {slidesData.length > 0 && currentIndex < slidesData.length && (
             <TransitionGroup>
               <CSSTransition
@@ -86,4 +102,4 @@ const App = () => {
   );
 };
 
-export default App; 
+export default App;

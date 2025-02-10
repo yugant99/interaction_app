@@ -102,7 +102,7 @@ const Slide = ({
         <img
           src={isYoungPerson ? "/images/young-person.png" : "/images/granny-trans.png"}
           alt={isYoungPerson ? "young person" : "granny"}
-          width="70px"
+          width="100px"
         />
       </div>
       <div className="button-group">
