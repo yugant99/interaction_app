@@ -12,6 +12,7 @@ const App = () => {
   const [activeList, setActiveList] = useState('');
   const [slidesData, setSlidesData] = useState([]);
   const [showInstructions, setShowInstructions] = useState(true);
+  const [currentPersonType, setCurrentPersonType] = useState('');
 
 
   useEffect(() => {
@@ -21,12 +22,24 @@ const App = () => {
   }, [activeList]);
 
   useEffect(() => {
+    // Update the current person type whenever the current index changes
+    if (slidesData.length > 0 && currentIndex < slidesData.length) {
+      setCurrentPersonType(slidesData[currentIndex].isYoungPerson ? 'young' : 'older');
+      // Show instructions again when transitioning between young and older person slides
+      if (currentIndex > 0 && 
+          slidesData[currentIndex].isYoungPerson !== slidesData[currentIndex - 1].isYoungPerson) {
+        setShowInstructions(true);
+      }
+    }
+  }, [currentIndex, slidesData]);
+
+  useEffect(() => {
     const loadCSVData = async () => {
       if (!activeList) return;
       
       try {
         console.log('Loading CSV for', activeList);
-        const response = await fetch('/game_modal.csv');
+        const response = await fetch('/game_modal_final.csv');
         const csvData = await response.text();
         
         Papa.parse(csvData, {
@@ -71,6 +84,10 @@ const App = () => {
   
             console.log('Sample formatted slide:', formattedSlides[0]);
             setSlidesData(formattedSlides);
+            // Set initial person type based on first slide
+            if (formattedSlides.length > 0) {
+              setCurrentPersonType(formattedSlides[0].isYoungPerson ? 'young' : 'older');
+            }
           },
           error: (error) => {
             console.error('CSV parsing error:', error);
@@ -92,10 +109,30 @@ const App = () => {
     }
   };
 
+  // Determine if this is the first set of slides or the second set
+  const isFirstSet = () => {
+    if (slidesData.length === 0 || currentIndex >= slidesData.length) return true;
+    
+    // Check if we're in the first half of slides with the same person type
+    const firstSlideType = slidesData[0].isYoungPerson;
+    return slidesData[currentIndex].isYoungPerson === firstSlideType;
+  };
+
+  // Get appropriate instruction message based on current state
+  const getInstructionMessage = () => {
+    const personType = currentPersonType === 'young' ? 'younger' : 'older';
+    
+    if (isFirstSet()) {
+      return `Welcome! You will be playing with an ${personType} adult.\nHelp the ${personType} adult get to the object the arrow is pointing at by describing the object to them.`;
+    } else {
+      return `Now, you will be playing with an ${personType} adult.\nHelp the ${personType} adult get to the object the arrow is pointing at by describing the object to them.`;
+    }
+  };
+
   return (
     <div id="game-screen">
       <div className="welcome-header">
-        <h4>Welcome {contestant}!</h4>
+        
       </div>
       {contestant === '' ? (
         <Home setContestant={setContestant} setActiveList={setActiveList} />
@@ -104,12 +141,13 @@ const App = () => {
         <Modal isOpen={showInstructions} onClose={() => setShowInstructions(false)}>
             <h2>Welcome to {activeList}!</h2>
             <img 
-              src={parseInt(activeList.replace('List', '')) % 2 === 0 ? 
+              src={currentPersonType === 'older' ? 
                 "/images/granny-trans.png" : 
                 "/images/young-person.png"} 
               alt="Character" 
               style={{ width: "100px", marginBottom: "20px" }}
             />
+            <p>{getInstructionMessage()}</p>
             <p>Use the SPACEBAR to move the character</p>
             <p>Press ENTER to go to the next image</p>
           </Modal>

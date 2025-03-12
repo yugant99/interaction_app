@@ -77,7 +77,9 @@ const Slide = ({
         {orderedImages.map((img, i) => (
           <div className="image-group" key={img.id}>
             {((isTargetRight && i === 1) || (!isTargetRight && i === 0)) && showArrow && (
-              <div id={`arrow-next-slide-${slideId}`} className="arrow">▶</div>
+              <div id={`arrow-next-slide-${slideId}`} className="arrow">
+                <img src="/images/arrow_black.jpg" alt="arrow" style={{ width: "60px" }} />
+              </div>
             )}
             <img 
               id={img.id} 
